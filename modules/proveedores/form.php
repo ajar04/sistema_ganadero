@@ -6,7 +6,7 @@ if ($_GET['form']=='add') { ?>
     <h1>
       <i class="fa fa-edit icon-title"></i> Registrar Proveedor
     </h1>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" style="margin-top: 50px;">
       <li><a href="?module=start"><i class="fa fa-home"></i> Inicio </a></li>
       <li><a href="?module=proveedores"> Proveedor </a></li>
       <li class="active"> Más </li>
@@ -26,17 +26,18 @@ if ($_GET['form']=='add') { ?>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Nit</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="id" onKeyPress="return goodchars(event,'0123456789-',this)" autocomplete="off" required>
+                  <input type="text" class="form-control" name="nit" onKeyPress="return goodchars(event,'0123456789-',this)" autocomplete="off" required>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-sm-2 control-label">Nombre Empresa</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="nombre" autocomplete="off" required>
+                  <input type="text" class="form-control" name="nombre_proveedor" autocomplete="off" required>
                 </div>
               </div>
 
+              
               <div class="form-group">
                 <label class="col-sm-2 control-label">Direccion</label>
                 <div class="col-sm-5">
@@ -45,18 +46,59 @@ if ($_GET['form']=='add') { ?>
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Correo</label>
+                <label class="col-sm-2 control-label">Telefono</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" name="email" autocomplete="off" required>
+                    <input type="text" class="form-control" id="telefono" name="telefono1" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" required>
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Telefono</label>
+                <label class="col-sm-2 control-label">Correo</label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" id="telefono" name="telefono" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                  <input type="email" class="form-control" name="email" autocomplete="off" required>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Web</label>
+                <div class="col-sm-5">
+                  <input type="url" class="form-control" name="web" autocomplete="off">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Nombre Contacto</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="nombre_contacto" autocomplete="off" >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Telefono Contacto</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="telefono2" autocomplete="off" >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Pais</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="pais" autocomplete="off" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Ciudad</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="ciudad" autocomplete="off" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                    <label class="col-sm-2 control-label">Descripción</label>
+                    <textarea rows="0" cols="0" class="span6" name="descripcion" id="descripcion" style="margin: 15px; width: 485px; height: 137px;"> </textarea>
+                    <span class="help-inline error" id="descripcion" style="display: none"></span>
+                    
+                  </div>
 
                   <div class="box-footer">
                     <div class="form-group">

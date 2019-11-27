@@ -1,12 +1,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <i class="fa fa-file-text-o icon-title"></i>Informe de datos de registro de medicamentos
+    <i class="fa fa-file-text-o icon-title"></i>Peso Ganado en los Animales
   </h1>
-  <ol class="breadcrumb">
+  <ol class="breadcrumb" style="margin-top: 50px;">
     <li><a href="?module=start"><i class="fa fa-home"></i> Inicio</a></li>
     <li class="active">informe</li>
-    <li class="active"> registro de medicamentos</li>
+    <li class="active"> registrar peso</li>
   </ol>
 </section>
 
@@ -24,15 +24,15 @@
                 <th width='20' class="center">Codigo</th>
                 <th width='80'class="center">Nombre</th>
                 <th width='80'class="center">Empleado</th>
-                <th width='80'class="center">Fecha</th>
-                <th width='80'class="center">Peso</th>
+                <th width='80'class="center">Fecha Ultimo Peso</th>
+                <th width='80'class="center">Ultimo Peso</th>
                 <th width='80'class="center">Ganancia</th>
               </tr>
             </thead>
             <tbody>
             <?php  
-            $query = mysqli_query($mysqli, "SELECT (p.id)as id,(a.nombre)as animal,(e.nombre)as empleado,(p.fecha)as fecha,
-                                            (p.peso)as peso,(p.ganancia)as ganancia
+            $query = mysqli_query($mysqli, "SELECT (p.id)as id,(a.nombre)as animal,(e.nombre)as empleado,(p.fecha_peso_actual)as fecha,
+                                            (p.peso_actual)as peso,(p.ganancia)as ganancia
                                             FROM peso_animal p INNER JOIN animal a ON p.id_animal=a.id 
                                             INNER JOIN empleado e ON p.id_empleado=e.id 
                                             WHERE p.id_animal=a.id AND p.id_empleado=e.id

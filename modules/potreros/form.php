@@ -9,7 +9,7 @@ if ($_GET['form']=='add') { ?>
     <h1>
       <i class="fa fa-edit icon-title"></i> Registrar Potrero
     </h1>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" style="margin-top: 50px;">
       <li><a href="?module=start"><i class="fa fa-home"></i> Inicio </a></li>
       <li><a href="?module=animales"> Ganado </a></li>
       <li class="active"> Potrero </li>
@@ -45,40 +45,37 @@ if ($_GET['form']=='add') { ?>
                 
                 <p>Click en Obtener Coordenadas</p>
 
-<button onclick="getLocation()">Obtener Corrdenadas</button>
-<p id="geo"></p>
-<hidden input type="text" id="txt" name="coordenadas" onclick="this.value = '' "/>
-        <button onclick="getAndSetVal();">Insertar Coordenadas</button>
-        <input type="text" id="txt2" name="coordenadas" value =''/>
+                <button onclick="getLocation()">Obtener Corrdenadas</button>
+                <p id="geo"></p>
+                <hidden input type="text" id="txt" name="coordenadas" onclick="this.value = '' "/>
+                        <button onclick="getAndSetVal();">Insertar Coordenadas</button>
+                        <input type="text" id="txt2" name="coordenadas" value =''/>
 
 
 
-<script>
-var x = document.getElementById("geo");
+                <script>
+                var x = document.getElementById("geo");
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
+                function getLocation() {
+                  if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                  } else { 
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                  }
+                }
 
-function showPosition(position) {
-  x.innerHTML = position.coords.latitude + ", " + position.coords.longitude;
-}
+                function showPosition(position) {
+                  x.innerHTML = position.coords.latitude + ", " + position.coords.longitude;
+                }
 
-function getAndSetVal()
-            {
-                var txt2 = document.getElementById('txt2').value= x.innerHTML;
-                
-            }
-</script>
-
-              
-
-                </div>
+                function getAndSetVal()
+                            {
+                                var txt2 = document.getElementById('txt2').value= x.innerHTML;
+                                
+                            }
+                </script>
               </div>
+            </div>
 
               <div class="form-group row">
                     <label class="col-sm-2 control-label">Dias Entrada Animales</label>
@@ -204,19 +201,11 @@ elseif ($_GET['form']=='edit') {
               <div class="form-group">
                 <label class="col-sm-2 control-label">Coordenadas</label>
                 <div class="col-sm-5">
-
-                
-
-<button onclick="getLocation()">Obtener Corrdenadas</button>
-<p id="geo"></p>
-<hidden input type="text" id="txt" name="coordenadas" onclick="this.value = '' "/>
-        <button onclick="getAndSetVal();">Insertar Coordenadas</button>
-        <input type="text" id="txt2" name="coordenadas" value =''/>
-
-
-                  
-                  </div>
+                  <input type="text" class="form-control" name="coordenadas" autocomplete="off" value="<?php echo $data['coordenadas']; ?>"  readonly required>
+                </div>
               </div>
+
+             
 
               <div class="form-group row">
                     <label class="col-sm-2 control-label">Dias Entrada Animales</label>
@@ -239,7 +228,7 @@ elseif ($_GET['form']=='edit') {
                   <div class="form-group row">
                     <label class="col-sm-2 control-label">Dias Salida Animales</label>
                     <div class="col-sm-4">
-                      <select class="chosen-select" name="dias_ent_anim" data-placeholder="-- Seleccionar --" autocomplete="off" required>
+                      <select class="chosen-select" name="dias_sal_anim" data-placeholder="-- Seleccionar --" autocomplete="off" required>
                       
                         <option value="<?php echo $data['dias_sal_anim']; ?>"><?php echo $data['dias_sal_anim']; ?></option>
                         <option value=""></option>
@@ -278,8 +267,8 @@ elseif ($_GET['form']=='edit') {
                   
                   <div class="form-group row">
                     <label class="col-sm-2 control-label">Observacion</label>
-                    <textarea rows="6" cols="50" class="span8" name="observacion" id="observacion" style="margin: 0px; width: 426px; height: 137px;" value="<?php echo format_rupiah($data['peso_nac']); ?>">  
-                    </textarea><span class="help-inline error" id="observacion" style="display: none"></span>
+                    <textarea rows="6" cols="50" class="span8" name="observacion" id="observacion" style="margin: 0px; width: 426px; height: 137px;" value="<?php echo format_rupiah($data['peso_nac']); ?>"></textarea>
+                      <span class="help-inline error" id="observacion" style="display: none"></span>
                     <span class="help-inline error" id="observacion" style="display: none"></span>
                   </div>
              

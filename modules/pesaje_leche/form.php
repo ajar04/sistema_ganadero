@@ -6,7 +6,7 @@ if ($_GET['form']=='add') { ?>
     <h1>
       <i class="fa fa-edit icon-title"></i> Peso Leche
     </h1>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" style="margin-top: 50px;">
       <li><a href="?module=start"><i class="fa fa-home"></i> Inicio </a></li>
       <li class="active"> Más </li>
     </ol>
@@ -22,10 +22,28 @@ if ($_GET['form']=='add') { ?>
               <form role="form" class="form-horizontal" action="modules/pesaje_leche/proses.php?act=insert" method="POST">
                 <div class="box-body">
 
+                <div class="form-group">
+                      <label class="col-sm-2 control-label" >Fecha y Hora del Sistema </label>
+                      <div class="col-sm-4" style="font-size:30px;">
+                         <?php $fecha=date("y-m-d"); echo $fecha.''.'<p id="demo"></p>';?> 
+                    
+                    
+                          <script>
+                          var myVar = setInterval(myTimer, 1000);
+
+                          function myTimer() {
+                            var d = new Date();
+                            document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+                          }
+                          </script>
+                    </div>
+                  </div>
+
                  <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Animal</label>
+                    <label class="col-sm-2 control-label">Animal</label>
                     <div class="col-sm-4">
                       <?php
+
                       require_once "config/conection.php";
                       $conexion = @new mysqli($server, $username, $password, $database);
 
@@ -33,14 +51,14 @@ if ($_GET['form']=='add') { ?>
                       {
                       die('Error de conexión: ' . $conexion->connect_error); //si hay un error termina la aplicación y mostramos el error
                       }
-                        $sql="SELECT * from animal";
+                        $sql="SELECT * from animal where animal.sexo='Hembra'";
                         $result = $conexion->query($sql); //usamos la conexion para dar un resultado a la variable
 
                       if ($result->num_rows > 0) //si la variable tiene al menos 1 fila entonces seguimos con el codigo
                       {
                         $combobit="";
                         while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-                        $combobit .=" <option value='".$row['id']."'>".$row['nombre']."</option>"; //concatenamos el los options para luego ser insertado en el HTML
+                        $combobit .=" <option value='".$row['id']."'>".$row['id']." - ".$row['nombre']."</option>"; //concatenamos el los options para luego ser insertado en el HTML
                         }
                       }
                       else{
@@ -55,7 +73,7 @@ if ($_GET['form']=='add') { ?>
                   </div>
 
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Empleado</label>
+                    <label class="col-sm-2 control-label">Empleado</label>
                     <div class="col-sm-4">
                       <?php
                       require_once "config/conection.php";
@@ -86,32 +104,24 @@ if ($_GET['form']=='add') { ?>
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Fecha</label>
+                 <div class="form-group row">
+                    <label class="col-sm-2 control-label">Fecha Ordeño</label>
                     <div class="col-sm-4">
-                      <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd" name="fecha" autocomplete="off" required>
+                      <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd" name="fecha" autocomplete="off" >
                     </div>
                   </div>
 
-                 <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Peso por la mañana</label>
+                 <div class="form-group row">
+                    <label class="col-sm-2 control-label">Leche Producida</label>
                     <div class="col-sm-3">
                       <div class="input-group">
-                        <span class="input-group-addon">Kg.</span>
-                        <input type="text" class="form-control" id="pesoam" name="peso_am" autocomplete="off" onKeyPress="return goodchars(event,'0123456789.',this)" required>
+                        <span class="input-group-addon">CC.</span>
+                        <input type="number" placeholder="0,00" required id="cant_leche" name="cant_leche" min="0" value="" step="0.01" title="Currency" pattern="^\d+(?:\.\d{1,2})?$" onblur="this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this.value)?'inherit':'red'" required>
+                        
                       </div>
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Peso por la tarde</label>
-                    <div class="col-sm-3">
-                      <div class="input-group">
-                        <span class="input-group-addon">Kg.</span>
-                        <input type="text" class="form-control" id="pesopm" name="peso_pm" autocomplete="off" onKeyPress="return goodchars(event,'0123456789.',this)" required>
-                      </div>
-                    </div>
-                  </div>
 
                   <div class="box-footer">
                     <div class="form-group">
@@ -132,7 +142,7 @@ if ($_GET['form']=='add') { ?>
 
 elseif ($_GET['form']=='edit') { 
   if (isset($_GET['id'])) {
-    $query = mysqli_query($mysqli, "SELECT id,id_animal,id_empleado,fecha,peso_am,peso_pm FROM peso_leche WHERE id='$_GET[id]'") 
+    $query = mysqli_query($mysqli, "SELECT id,id_animal,id_empleado,fecha,cant_leche,total_leche, prom_leche FROM produccion_leche WHERE id='$_GET[id]'") 
                                       or die('error: '.mysqli_error($mysqli));
                                       $data  = mysqli_fetch_assoc($query);
     }
@@ -163,38 +173,15 @@ elseif ($_GET['form']=='edit') {
                 </div>
               </div>
 
+
               <div class="form-group">
                 <label class="col-sm-2 control-label">Animal</label>
-                <div class="col-sm-4">
-                  <?php
-                      require_once "config/conection.php";
-                      $conexion = @new mysqli($server, $username, $password, $database);
-
-                      if ($conexion->connect_error) //verificamos si hubo un error al conectar, recuerden que pusimos el @ para evitarl
-                      {
-                      die('Error de conexión: ' . $conexion->connect_error); //si hay un error termina la aplicación y mostramos el error
-                      }
-                        $sql="SELECT * from animal";
-                        $result = $conexion->query($sql); //usamos la conexion para dar un resultado a la variable
-
-                      if ($result->num_rows > 0) //si la variable tiene al menos 1 fila entonces seguimos con el codigo
-                      {
-                        $combobit="";
-                        while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-                        $combobit .=" <option value='".$row['id']."'>".$row['nombre']."</option>"; //concatenamos el los options para luego ser insertado en el HTML
-                        }
-                      }
-                      else{
-                          echo "No hubo resultados";
-                          }
-                      $conexion->close(); //cerramos la conexión
-                      ?>
-                  <select class="chosen-select" name="id_animal" data-placeholder="-- Seleccionar --" autocomplete="off" required>
-                    <option value="<?php echo $data['id_animal']; ?>"><?php echo $data['id_animal']; ?></option>
-                    <?php echo $combobit; ?>
-                  </select>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="id_animal" value="<?php echo $data['id_animal']; ?>" readonly required>
                 </div>
               </div>
+
+              
 
               <div class="form-group">
                 <label class="col-sm-2 control-label">Empleado</label>
@@ -230,32 +217,26 @@ elseif ($_GET['form']=='edit') {
               </div>
 
 
-              <div class="form-group">
-                <label class="col-sm-1">Fecha</label>
-                <div class="col-sm-2">
-                <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd" name="fecha" autocomplete="off" required value="<?php echo $data['fecha']; ?>"></div>
-              </div>
-
-
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Peso mañana </label>
-                <div class="col-sm-5">
-                  <div class="input-group">
-                    <span class="input-group-addon">Kg</span>
-                    <input type="text" class="form-control" id="peso_am" name="peso_am" autocomplete="off" onKeyPress="return goodchars(event,'0123456789.',this)" value="<?php echo format_rupiah($data['peso_am']); ?>">
+              <div class="form-group row">
+                    <label class="col-sm-2 control-label">Fecha Ordeño</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd " name="fecha" autocomplete="off" >
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Peso tarde</label>
-                <div class="col-sm-5">
-                  <div class="input-group">
-                    <span class="input-group-addon">Kg</span>
-                    <input type="text" class="form-control" id="peso_am" name="peso_am" autocomplete="off" onKeyPress="return goodchars(event,'0123456789.',this)" value="<?php echo format_rupiah($data['peso_pm']); ?>">
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 control-label">Actualizar produccion</label>
+                    <div class="col-sm-3">
+                      <div class="input-group">
+                        <span class="input-group-addon">CC.</span>
+                        <input type="number" placeholder="0.00" required id="cant_leche" name="cant_leche" min="0" value="0" step="0.01" title="Currency" pattern="^\d+(?:\.\d{1,2})?$" onblur="this.parentNode.parentNode.style.backgroundColor=/^\d+(?:\.\d{1,2})?$/.test(this.value)?'inherit':'red'" required>
+                        
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+
+              
 
             <div class="box-footer">
               <div class="form-group">

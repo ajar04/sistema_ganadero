@@ -8,7 +8,7 @@ if ($_GET['form']=='add') { ?>
     <h1>
       <i class="fa fa-edit icon-title"></i> Agregar Usuario
     </h1>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" style="margin-top: 50px;">
       <li><a href="?module=start"><i class="fa fa-home"></i> Inicio </a></li>
       <li><a href="?module=user"> Usuario </a></li>
       <li class="active"> agregar </li>

@@ -11,16 +11,23 @@ else {
     if ($_GET['act']=='insert') {
         if (isset($_POST['Guardar'])) {
      
-            $id  = mysqli_real_escape_string($mysqli, trim($_POST['id']));
-            $nombre  = mysqli_real_escape_string($mysqli, trim($_POST['nombre']));
+            //$id  = mysqli_real_escape_string($mysqli, trim($_POST['id_proveedor']));
+            $nit  = mysqli_real_escape_string($mysqli, trim($_POST['nit']));
+            $nombre  = mysqli_real_escape_string($mysqli, trim($_POST['nombre_proveedor']));
             $direccion     = mysqli_real_escape_string($mysqli, trim($_POST['direccion']));
+            $telefono = str_replace('.', '', mysqli_real_escape_string($mysqli, trim($_POST['telefono1'])));  
             $email     = mysqli_real_escape_string($mysqli, trim($_POST['email']));
-            $telefono = str_replace('.', '', mysqli_real_escape_string($mysqli, trim($_POST['telefono'])));           
+            $web     = mysqli_real_escape_string($mysqli, trim($_POST['web']));
+            $nombre2     = mysqli_real_escape_string($mysqli, trim($_POST['nombre_contacto']));
+            $telefono2     = mysqli_real_escape_string($mysqli, trim($_POST['telefono2']));
+            $pais     = mysqli_real_escape_string($mysqli, trim($_POST['pais']));
+            $ciudad     = mysqli_real_escape_string($mysqli, trim($_POST['ciudad']));
+            $descripcion     = mysqli_real_escape_string($mysqli, trim($_POST['descripcion']));
+                     
 
             $usuario_creacion = $_SESSION['id_user'];
 
-        $query = mysqli_query($mysqli, "INSERT INTO proveedor(id,nombre,direccion,email,telefono) 
-            VALUES('$id','$nombre','$direccion','$email','$telefono')")
+        $query = mysqli_query($mysqli, "INSERT INTO `proveedor`(`id_proveedor`, `nit`, `nombre_proveedor`, `direccion`, `telefono`, `email`, `web`, `nombre_contacto`, `telefono_contacto`, `pais`, `ciudad`, `descripcion`)  VALUES(' ',$nit,'$nombre','$direccion',$telefono,'$email','$web','$nombre2',$telefono2,'$pais','$ciudad','$descripcion')")
                                             or die('error '.mysqli_error($mysqli));    
 
         

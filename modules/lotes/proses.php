@@ -3,7 +3,7 @@
 session_start();
 
 require_once "../../config/database.php";
-
+$fecha_reg=date("Y-m-d H:i:s");
 if (empty($_SESSION['username']) && empty($_SESSION['password'])){
     echo "<meta http-equiv='refresh' content='0; url=index.php?alert=1'>";
 }
@@ -12,13 +12,16 @@ else {
     if ($_GET['act']=='insert') {
         if (isset($_POST['Guardar'])) {
 
-            $id  = mysqli_real_escape_string($mysqli, trim($_POST['id']));
-            $lote  = mysqli_real_escape_string($mysqli, trim($_POST['lote']));
-            $usuario_creacion = $_SESSION['id_user'];
+            //$id  = mysqli_real_escape_string($mysqli, trim($_POST['id']));
+            $nombre  = mysqli_real_escape_string($mysqli, trim($_POST['nombre']));
+            $id_animal_lote=mysqli_real_escape_string($mysqli, trim($_POST['id_animal_lote']));
+            $id_empleado=mysqli_real_escape_string($mysqli, trim($_POST['id_empleado']));
+            
+            $id_usuario = $_SESSION['id_user'];
 
   
-            $query = mysqli_query($mysqli, "INSERT INTO lote(id,lote,usuario_creacion,usuario_edicion) 
-                                            VALUES('$id','$lote','$usuario_creacion','$usuario_creacion')")
+            $query = mysqli_query($mysqli, "INSERT INTO `lote`(`id`, `nombre_lote`, `id_animal_lote`,`id_empleado`, `fecha_creacion`,`fecha_actualizacion`)
+                                            VALUES(' ','$nombre','$id_animal_lote','$id_empleado','$fecha_reg', ' ')")
                                             or die('error '.mysqli_error($mysqli));    
 
         
@@ -33,14 +36,17 @@ else {
         if (isset($_POST['Guardar'])) {
             if (isset($_POST['id'])) {
         
+                
+                
+                $nombre_lote  = mysqli_real_escape_string($mysqli, trim($_POST['nombre_lote']));
                 $id  = mysqli_real_escape_string($mysqli, trim($_POST['id']));
-                $lote  = mysqli_real_escape_string($mysqli, trim($_POST['lote']));
+                $id_empleado  = mysqli_real_escape_string($mysqli, trim($_POST['id_empleado']));
            
-                $usuario_edicion = $_SESSION['id_user'];
+                $id_usuario = $_SESSION['id_user'];
 
-                $query = mysqli_query($mysqli, "UPDATE lote SET  lote       = '$lote',
-                                                                usuario_edicion    = '$usuario_edicion'
-                                                            WHERE id       = '$id'")
+                $query = mysqli_query($mysqli, "UPDATE lote SET  nombre_lote    = '$nombre_lote',
+                                                                 id_empleado   = '$id_empleado'
+                                                            WHERE id               = '$id'")
                                                 or die('error: '.mysqli_error($mysqli));
 
     

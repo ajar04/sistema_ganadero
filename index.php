@@ -6,7 +6,7 @@
     <title>Login | Gestion Ganadera</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Aplikasi Persediaan Obat pada Apotek">
+    <meta name="description" content="Sistema de Gestion Ganadera">
     <meta name="author" content="Indra Styawantoro" />
 
     <!-- favicon -->
@@ -33,6 +33,7 @@
  
       if (empty($_GET['alert'])) {
         echo "";
+        
       } 
 
       elseif ($_GET['alert'] == 1) {

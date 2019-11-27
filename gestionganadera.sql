@@ -3,14 +3,14 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2019 a las 19:27:27
+-- Tiempo de generación: 19-11-2019 a las 02:27:59
 -- Versión del servidor: 10.1.39-MariaDB
 -- Versión de PHP: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "-05:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -71,7 +71,39 @@ INSERT INTO `animal` (`id`, `nombre`, `sexo`, `estado`, `propietario`, `registro
 (1, 'Machito', 'Macho', 'Activo', 1, '10936728', '2018-04-19', '2018-10-19', 40, 60, 4, 6, 'au12', '1', 'Carne', 'vereda san juan', 250000),
 (3, 'manchona', 'Hembra', 'Activo', 1, '123527', '2018-08-14', '2019-01-16', 30.5, 13.5, 2, 2, 'asu2', '14a', 'Lechero', 'vereda jun', 250000),
 (6, 'cortica', 'Hembra', 'Activo', 1, '13245366', '2018-11-20', '2019-05-14', 27, 49, 15, 3, 'sae2', 'sae2', 'Lechero', 'toledo', 300000),
-(7, 'rezonante', 'Macho', 'Vendido', 1, '1234152', '2018-11-08', '2019-05-16', 15, 45, 2, 2, 'as3', 'as3', 'Carne', 'nn', 542312);
+(7, 'rezonante', 'Macho', 'Vendido', 1, '1234152', '2018-11-08', '2019-05-16', 15, 45, 2, 2, 'as3', 'as3', 'Carne', 'nn', 542312),
+(8, 'tomy', 'Macho', 'Activo', 1, 'tm01', '2014-07-15', '2014-09-15', 0, 2014, 2, 2, 'cr03', 'cr', 'Carne', 'finca llano bonito', 1500000);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cargo`
+--
+
+CREATE TABLE `cargo` (
+  `id` int(11) NOT NULL,
+  `tipo_cargo` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cargo`
+--
+
+INSERT INTO `cargo` (`id`, `tipo_cargo`) VALUES
+(1, 'Administrador'),
+(2, 'Gerente'),
+(3, 'Vaquero'),
+(4, 'Veterinario'),
+(5, 'Asistente Tecnico'),
+(6, 'Contador'),
+(7, 'Partero'),
+(8, 'Ordeñadore'),
+(9, 'Guadañadores'),
+(10, 'Toconeadores'),
+(11, 'Fumigadores'),
+(12, 'Tractorista'),
+(13, 'Mantenimiento de Cercas'),
+(14, 'Conductor');
 
 -- --------------------------------------------------------
 
@@ -144,6 +176,7 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`id`, `nombre`, `direccion`, `fecha_nac`, `sexo`, `correo`, `salario`, `cargo`, `estado`, `usuario_creacion`, `fecha_creacion`, `usuario_edicion`, `fecha_edicion`) VALUES
+(87702742, 'alfredo martinez', 'doÃ±a ceci', '1995-06-19', 'Hombre', 'alfredo@ufps.edu.co', 5000000, 'OrdeÃ±ador', 'Activo', 1, '2019-11-17 21:30:19', 1, '2019-11-17 21:30:19'),
 (88265144, 'Alvaro Arias', 'atalaya', '1983-04-13', 'Hombre', 'alvarojosear@ufps.edu.co', 5000000, 'Administrador', 'Activo', 1, '2019-06-06 03:52:46', 1, '2019-06-06 03:52:46'),
 (1093769740, 'jefersson PeÃ±aranda', 'CLL40#1-21', '1993-11-13', 'Hombre', 'harbey.14@gmail.com', 2500000, '', 'Activo', 1, '2019-05-22 23:48:11', 1, '2019-05-22 23:48:11');
 
@@ -209,13 +242,22 @@ CREATE TABLE `peso_leche` (
   `id` int(11) NOT NULL,
   `id_animal` int(11) NOT NULL,
   `id_empleado` int(11) NOT NULL,
-  `fecha` int(11) NOT NULL,
+  `fecha` date NOT NULL,
   `peso_am` int(20) DEFAULT NULL,
-  `hora_am` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `hora_am` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `peso_pm` int(11) DEFAULT NULL,
-  `hora_pm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `peso_perdido` int(11) NOT NULL
+  `hora_pm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `peso_perdido` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `peso_leche`
+--
+
+INSERT INTO `peso_leche` (`id`, `id_animal`, `id_empleado`, `fecha`, `peso_am`, `hora_am`, `peso_pm`, `hora_pm`, `peso_perdido`) VALUES
+(2, 1, 88265144, '2019-11-17', 650, '2019-11-17 21:01:47', 610, '2019-11-17 21:01:47', 40),
+(4, 3, 88265144, '2019-11-17', 650, '2019-11-17 23:47:37', 630, '2019-11-17 23:47:37', 20),
+(3, 3, 1093769740, '2019-11-17', 630, '2019-11-17 21:03:40', NULL, '2019-11-17 21:03:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -245,7 +287,8 @@ CREATE TABLE `potrero` (
 
 INSERT INTO `potrero` (`id`, `nombre`, `area`, `coordenadas`, `dias_ent_anim`, `dias_sal_anim`, `est_cerca`, `cap_ganado`, `observacion`, `usuario_creacion`, `fecha_creacion`, `usuario_edicion`, `fecha_edicion`) VALUES
 (10, 'llano pequeÃ±o', '1500', '7.8982929, -72.50863', 'Lunes', 'Martes', 'Cercado', 100, '', 1, '2019-06-07 00:19:25', 1, '2019-06-07 00:19:25'),
-(23, 'asdf', '324', '7.8982929, -72.50863950000002', 'Lunes', 'Martes', 'Cerca Electrica', 234, '', 1, '2019-11-17 17:44:39', 1, '2019-11-17 17:44:39');
+(23, 'asdf', '324', '7.8982929, -72.50863950000002', 'Lunes', 'Martes', 'Cerca Electrica', 234, '', 1, '2019-11-17 17:44:39', 1, '2019-11-17 17:44:39'),
+(24, 'pasto rico', '300', '7.8982929, -72.50863950000002', 'Martes', 'Miercoles', 'Cercado', 30, '', 1, '2019-11-18 11:04:33', 1, '2019-11-18 11:04:33');
 
 -- --------------------------------------------------------
 
@@ -359,7 +402,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_user`, `username`, `name_user`, `password`, `email`, `telefono`, `foto`, `permisos_acceso`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'Administrador', '91f5167c34c400758115c2a6826ec2e3', 'info@sist.com', '3102358925', 'usuario.png', 'Super Admin', 'activo', '2017-04-01 08:15:15', '2019-05-20 13:09:55'),
-(2, 'juan', 'juan', 'a94652aa97c7211ba8954dd15a3cf838', 'juab@juan.com', '12000', NULL, 'Almacen', 'activo', '2017-07-25 22:34:03', '2017-07-25 22:42:00');
+(2, 'juan', 'juan', 'a94652aa97c7211ba8954dd15a3cf838', 'juab@juan.com', '12000', NULL, 'Almacen', 'activo', '2017-07-25 22:34:03', '2017-07-25 22:42:00'),
+(3, 'alfredo', 'alfredo', 'e10adc3949ba59abbe56e057f20f883e', 'alfredo@gmail.com', '78258487', 'af137855fc33f7ceb4bcc2511a5a3352_preview_featured.jpg', 'Super Admin', 'activo', '2019-11-17 22:04:17', '2019-11-17 22:11:07');
 
 -- --------------------------------------------------------
 
@@ -470,6 +514,12 @@ ALTER TABLE `animal`
   ADD KEY `estado` (`estado`) USING BTREE;
 
 --
+-- Indices de la tabla `cargo`
+--
+ALTER TABLE `cargo`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `color`
 --
 ALTER TABLE `color`
@@ -500,8 +550,7 @@ ALTER TABLE `lote`
 -- Indices de la tabla `lote_potrero`
 --
 ALTER TABLE `lote_potrero`
-  ADD PRIMARY KEY (`id_potrero`,`id_lote`),
-  ADD KEY `lotepotrero` (`id_lote`);
+  ADD PRIMARY KEY (`id_potrero`) USING BTREE;
 
 --
 -- Indices de la tabla `peso_animal`
@@ -570,7 +619,13 @@ ALTER TABLE `afaro`
 -- AUTO_INCREMENT de la tabla `animal`
 --
 ALTER TABLE `animal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `cargo`
+--
+ALTER TABLE `cargo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `color`
@@ -588,13 +643,13 @@ ALTER TABLE `peso_animal`
 -- AUTO_INCREMENT de la tabla `peso_leche`
 --
 ALTER TABLE `peso_leche`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `potrero`
 --
 ALTER TABLE `potrero`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `raza`
@@ -618,7 +673,7 @@ ALTER TABLE `t_vegetal`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `vegetacion`

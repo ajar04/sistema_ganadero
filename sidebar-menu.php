@@ -68,6 +68,7 @@ if ($_SESSION['permisos_acceso']=='Super Admin') { ?>
         </a>
         <ul class="treeview-menu">
           <li><a href="?module=animales"><i class="fa fa-circle-o"></i> Listado animales </a></li>
+          <li><a href="?module=razas"><i class="fa fa-circle-o"></i> Razas</a></li>
           <li><a href="?module=colores"><i class="fa fa-circle-o"></i> Colores </a></li>
           <li class="active"><a href="?module=lotes"><i class="fa fa-circle-o"></i> Lotes </a></li>
         </ul>
@@ -97,7 +98,7 @@ if ($_SESSION['permisos_acceso']=='Super Admin') { ?>
         <ul class="treeview-menu">
           <li class="active"><a href="?module=aforos"><i class="fa fa-circle-o"></i> Aforos </a></li>
           <li><a href="?module=potreros"><i class="fa fa-circle-o"></i> Potreros </a></li>
-          <li><a href="?module=ocupa_potreros"><i class="fa fa-circle-o"></i> Ocupacion Potreros</a></li>
+          <li><a href="?module=ocupacion_potreros"><i class="fa fa-circle-o"></i> Ocupacion Potreros</a></li>
           <li><a href="?module=tipo_ctr_potrero"><i class="fa fa-circle-o"></i> Tipo Control Potreros</a></li>
           <li><a href="?module=vegetales"><i class="fa fa-circle-o"></i> Vegetales </a></li>
           <li><a href="?module=tipo_vegetales"><i class="fa fa-circle-o"></i> Tipo Vegetales </a></li>
@@ -106,7 +107,7 @@ if ($_SESSION['permisos_acceso']=='Super Admin') { ?>
       <?php
     }
 
-    if ($_GET["module"]=="potreros") { ?>
+    elseif ($_GET["module"]=="potreros") { ?>
       <li class="active treeview">
         <a href="javascript:void(0);">
           <i class="glyphicon glyphicon-leaf"></i> <span>Praderas</span> <i class="fa fa-angle-left pull-right"></i>
@@ -114,7 +115,7 @@ if ($_SESSION['permisos_acceso']=='Super Admin') { ?>
         <ul class="treeview-menu">
           <li><a href="?module=aforos"><i class="fa fa-circle-o"></i> Aforos </a></li>
           <li class="active"><a href="?module=potreros"><i class="fa fa-circle-o"></i> Potreros </a></li>
-          <li><a href="?module=ocupa_potreros"><i class="fa fa-circle-o"></i> Ocupacion Potreros</a></li>
+          <li><a href="?module=ocupacion_potreros"><i class="fa fa-circle-o"></i> Ocupacion Potreros</a></li>
           <li><a href="?module=tipo_ctr_potrero"><i class="fa fa-circle-o"></i> Tipo Control Potreros</a></li>
           <li><a href="?module=vegetales"><i class="fa fa-circle-o"></i> Vegetales </a></li>
           <li><a href="?module=tipo_vegetales"><i class="fa fa-circle-o"></i> Tipo Vegetales </a></li>
@@ -122,7 +123,7 @@ if ($_SESSION['permisos_acceso']=='Super Admin') { ?>
       </li>
       <?php
     }
-    elseif ($_GET["module"]=="ocupa_potreros") { ?>
+    elseif ($_GET["module"]=="ocupacion_potreros") { ?>
       <li class="active treeview">
         <a href="javascript:void(0);">
           <i class="glyphicon glyphicon-leaf"></i> <span>Praderas</span> <i class="fa fa-angle-left pull-right"></i>
@@ -130,7 +131,7 @@ if ($_SESSION['permisos_acceso']=='Super Admin') { ?>
         <ul class="treeview-menu">
           <li><a href="?module=aforos"><i class="fa fa-circle-o"></i> Aforos </a></li>
           <li><a href="?module=potreros"><i class="fa fa-circle-o"></i> Potreros </a></li>
-          <li class="active"><a href="?module=ocupa_potreros"><i class="fa fa-circle-o"></i> Ocupacion Potreros </a></li>
+          <li class="active"><a href="?module=ocupacion_potreros"><i class="fa fa-circle-o"></i> Ocupacion Potreros </a></li>
           <li><a href="?module=tipo_ctr_potrero"><i class="fa fa-circle-o"></i> Tipo Control Potreros</a></li>
           <li><a href="?module=vegetales"><i class="fa fa-circle-o"></i> Vegetales </a></li>
           <li><a href="?module=tipo_vegetales"><i class="fa fa-circle-o"></i> Tipo Vegetales </a></li>
@@ -146,7 +147,7 @@ if ($_SESSION['permisos_acceso']=='Super Admin') { ?>
         <ul class="treeview-menu">
           <li><a href="?module=aforos"><i class="fa fa-circle-o"></i> Aforos </a></li>
           <li><a href="?module=potreros"><i class="fa fa-circle-o"></i> Potreros </a></li>
-          <li><a href="?module=ocupa_potreros"><i class="fa fa-circle-o"></i> Ocupacion Potreros </a></li>
+          <li><a href="?module=ocupacion_potreros"><i class="fa fa-circle-o"></i> Ocupacion Potreros </a></li>
           <li class="active"><a href="?module=tipo_ctr_potrero"><i class="fa fa-circle-o"></i> Tipo Control Potreros</a></li>
           <li><a href="?module=vegetales"><i class="fa fa-circle-o"></i> Vegetales </a></li>
           <li><a href="?module=tipo_vegetales"><i class="fa fa-circle-o"></i> Tipo Vegetales </a></li>
@@ -162,7 +163,7 @@ if ($_SESSION['permisos_acceso']=='Super Admin') { ?>
         <ul class="treeview-menu">
           <li><a href="?module=aforos"><i class="fa fa-circle-o"></i> Aforos </a></li>
           <li><a href="?module=potreros"><i class="fa fa-circle-o"></i> Potreros </a></li>
-          <li><a href="?module=ocupa_potreros"><i class="fa fa-circle-o"></i> Ocupacion Potreros </a></li>
+          <li><a href="?module=ocupacion_potreros"><i class="fa fa-circle-o"></i> Ocupacion Potreros </a></li>
           <li><a href="?module=tipo_ctr_potrero"><i class="fa fa-circle-o"></i> Tipo Control Potreros</a></li>
           <li class="active"><a href="?module=vegetales"><i class="fa fa-circle-o"></i> Vegetales </a></li>
           <li><a href="?module=tipo_vegetales"><i class="fa fa-circle-o"></i> Tipo Vegetales </a></li>
@@ -178,7 +179,7 @@ if ($_SESSION['permisos_acceso']=='Super Admin') { ?>
         <ul class="treeview-menu">
           <li><a href="?module=aforos"><i class="fa fa-circle-o"></i> Aforos </a></li>
           <li><a href="?module=potreros"><i class="fa fa-circle-o"></i> Potreros </a></li>
-          <li><a href="?module=ocupa_potreros"><i class="fa fa-circle-o"></i> Ocupacion Potreros </a></li>
+          <li><a href="?module=ocupacion_potreros"><i class="fa fa-circle-o"></i> Ocupacion Potreros </a></li>
           <li><a href="?module=tipo_ctr_potrero"><i class="fa fa-circle-o"></i> Tipo Control Potreros</a></li>
           <li><a href="?module=vegetales"><i class="fa fa-circle-o"></i> Vegetales </a></li>
           <li class="active"><a href="?module=tipo_vegetales"><i class="fa fa-circle-o"></i> Tipo Vegetales </a></li>
@@ -194,9 +195,8 @@ if ($_SESSION['permisos_acceso']=='Super Admin') { ?>
         <ul class="treeview-menu">
           <li><a href="?module=aforos"><i class="fa fa-circle-o"></i> Aforos </a></li>
           <li><a href="?module=potreros"><i class="fa fa-circle-o"></i> Potreros </a></li>
-          <li><a href="?module=ocupa_potreros"><i class="fa fa-circle-o"></i> Ocupacion potreros </a></li>
+          <li><a href="?module=ocupacion_potreros"><i class="fa fa-circle-o"></i> Ocupacion Potreros </a></li>
           <li><a href="?module=tipo_ctr_potrero"><i class="fa fa-circle-o"></i> Tipo Control Potreros</a></li>
-          <li><a href="?module=potreros"><i class="fa fa-circle-o"></i> Potreros </a></li>
           <li><a href="?module=vegetales"><i class="fa fa-circle-o"></i> Vegetales </a></li>
           <li><a href="?module=tipo_vegetales"><i class="fa fa-circle-o"></i> Tipo Vegetales </a></li>
         </ul>
@@ -277,8 +277,52 @@ if ($_SESSION['permisos_acceso']=='Super Admin') { ?>
       </li>
       <?php
     }
+//_____________________________________________________vacunas______________________________________________
+//___________________________________________________________________________________________________________________
+if ($_GET["module"]=="vacunas") { ?>
+  <li class="active treeview">
+    <a href="javascript:void(0);">
+      <i class="glyphicon glyphicon-heart"></i> <span>Salud</span> <i class="fa fa-angle-left pull-right"></i>
+    </a>
+    <ul class="treeview-menu">
+      <li class="active" ><a href="?module=vacunas"><i class="fa fa-circle-o"></i> Vacunas </a></li>
+      <li><a href="?module=vacunacion"><i class="fa fa-circle-o"></i> Vacunacion </a></li>
+    </ul>
+  </li>
+  <?php
+}
+elseif ($_GET["module"]=="vacunacion") { ?>
+  <li class="active treeview">
+    <a href="javascript:void(0);">
+      <i class="glyphicon glyphicon-heart"></i> <span>Salud</span> <i class="fa fa-angle-left pull-right"></i>
+    </a>
+    <ul class="treeview-menu">
+      <li><a href="?module=vacunas"><i class="fa fa-circle-o"></i> Vacunas </a></li>
+      <li class="active"><a href="?module=vacunacion"><i class="fa fa-circle-o"></i> Vacunacion </a></li>
+    </ul>
+  </li>
+  <?php
+}
+
+else { ?>
+  <li class="treeview">
+    <a href="javascript:void(0);">
+      <i class="glyphicon glyphicon-heart"></i> <span>Salud</span> <i class="fa fa-angle-left pull-right"></i>
+    </a>
+    <ul class="treeview-menu">
+      <li><a href="?module=vacunas"><i class="fa fa-circle-o"></i> Vacunas </a></li>
+      <li><a href="?module=vacunacion"><i class="fa fa-circle-o"></i> Vacunacion </a></li>
+    </ul>
+  </li>
+  <?php
+}
+
 
 //___________________________________________________________________________________________________________________
+
+
+
+//______________________________________________________nomina_______________________________________________________
     if ($_GET["module"]=="empleados") { ?>
       <li class="active treeview">
         <a href="javascript:void(0);">

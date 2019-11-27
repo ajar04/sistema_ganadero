@@ -9266,7 +9266,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "Tidak ada data yang tersedia pada tabel",
+			"sEmptyTable": "No hay datos registrados para mostrar en esta tabla",
 		
 		
 			/**

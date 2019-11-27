@@ -115,6 +115,7 @@ body {
   position: fixed;
 }
 .fixed .main-header {
+  height: 150px;
   top: 0;
   right: 0;
   left: 0;
@@ -243,7 +244,7 @@ a:focus {
   float: left;
   background-color: transparent;
   background-image: none;
-  padding: 15px 15px;
+  padding: 30px 30px;
   font-family: fontAwesome;
 }
 .main-header .sidebar-toggle:before {
@@ -274,8 +275,8 @@ a:focus {
   float: left;
   height: 50px;
   font-size: 20px;
-  line-height: 50px;
-  text-align: center;
+  line-height: 15px;
+  text-align: left;
   width: 230px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0 15px;
@@ -445,8 +446,8 @@ a:focus {
   clear: both;
 }
 .user-panel > .image > img {
-  width: 45px;
-  height: 45px;
+  width: 80px;
+  height: 80px;
 }
 .user-panel > .info {
   font-weight: 600;
@@ -471,6 +472,7 @@ a:focus {
 }
 .sidebar-menu {
   list-style: none;
+  height: 60px;
   margin: 0;
   padding: 0;
 }

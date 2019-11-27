@@ -4,6 +4,7 @@ require_once "config/fungsi_tanggal.php";
 require_once "config/fungsi_rupiah.php";
 
 
+
 if (empty($_SESSION['username']) && empty($_SESSION['password'])){
 	echo "<meta http-equiv='refresh' content='0; url=index.php?alert=1'>";
 }
@@ -65,6 +66,13 @@ else {
 	elseif ($_GET['module'] == 'form_potreros') {
 		include "modules/potreros/form.php";
 	}
+	elseif ($_GET['module'] == 'ocupacion_potreros') {
+		include "modules/ocupacion_potreros/view.php";
+	}
+
+	elseif ($_GET['module'] == 'form_ocupacion_potreros') {
+		include "modules/ocupacion_potreros/form.php";
+	}
 	elseif ($_GET['module'] == 'vegetales') {
 		include "modules/vegetales/view.php";
 	}
@@ -111,6 +119,19 @@ else {
 	}
 	elseif ($_GET['module'] == 'reporte_pesaje_leche') {
 		include "modules/reporte_pesaje_leche/view.php";
+	}
+
+	elseif ($_GET['module'] == 'vacunas') {
+		include "modules/vacunas/view.php";
+	}
+	elseif ($_GET['module'] == 'form_vacunas') {
+		include "modules/vacunas/form.php";
+	}
+	elseif ($_GET['module'] == 'vacunacion') {
+		include "modules/vacunacion/view.php";
+	}
+	elseif ($_GET['module'] == 'form_vacunacion') {
+		include "modules/vacunacion/form.php";
 	}
 
 	elseif ($_GET['module'] == 'user') {

@@ -6,12 +6,10 @@ if ($_GET['form']=='add') { ?>
     <h1>
       <i class="fa fa-edit icon-title"></i> Registrar Animales
     </h1>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" style="margin-top: 50px;">
       <li><a href="?module=start"><i class="fa fa-home"></i> Inicio </a></li>
       <li><a href="?module=animales"> Datos generales </a></li>
-      <li><a href="?module=animales"> Genealogia </a></li>
-      <li><a href="?module=animales"> Fenotipo </a></li>
-      <li class="active"> Más </li>
+
     </ol>
   </section>
 
@@ -25,15 +23,32 @@ if ($_GET['form']=='add') { ?>
               <form role="form" class="form-horizontal" action="modules/animales/proses.php?act=insert" method="POST">
                 <div class="box-body">
 
+                <div class="form-group">
+                      <label class="col-sm-2 control-label" >Fecha del Sistema </label>
+                      <div class="col-sm-4" style="font-size:30px;">
+                        <?php $fecha=date("y-m-d "); echo $fecha.''.'<p id="demo"></p>';?>
+                    
+                    
+                          <script>
+                          var myVar = setInterval(myTimer, 1000);
+
+                          function myTimer() {
+                            var d = new Date();
+                            document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+                          }
+                          </script>
+                    </div>
+                  </div>
+
                   <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nombre</label>
+                    <label class="col-sm-2 control-label">Nombre</label>
                     <div class="col-sm-4">
                       <input type="text" class="form-control" name="nombre" autocomplete="off" required="">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Sexo</label>
+                    <label class="col-sm-2 control-label">Sexo</label>
                     <div class="col-sm-4">
                       <select class="chosen-select" name="sexo" data-placeholder="-- Seleccionar --" autocomplete="off" required>
                         <option value=""></option>
@@ -44,7 +59,7 @@ if ($_GET['form']=='add') { ?>
                   </div>
 
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Estado</label>
+                    <label class="col-sm-2 control-label">Estado</label>
                     <div class="col-sm-4">
                     <select class="chosen-select" name="estado" data-placeholder="-- Seleccionar --" autocomplete="off" required>
                         <option value=""></option>
@@ -57,7 +72,7 @@ if ($_GET['form']=='add') { ?>
                   </div>
 
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Propietario</label>
+                    <label class="col-sm-2 control-label">Propietario</label>
                     <div class="col-sm-4">
                       <select class="chosen-select" name="propietario" data-placeholder="-- Seleccionar --" autocomplete="off" required>
                         <option value=""></option>
@@ -67,28 +82,28 @@ if ($_GET['form']=='add') { ?>
                   </div>
 
                   <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Registro</label>
+                    <label class="col-sm-2 control-label">Registro</label>
                     <div class="col-sm-4">
                       <input type="text" class="form-control" name="registro" autocomplete="off" required>
                     </div>
                   </div>
 
-                  <div class="form-row">
-                    <label class="col-sm-2 col-form-label">Fecha nacimiento</label>
+                  <div class="form-group row">
+                    <label class="col-sm-2 control-label">Fecha nacimiento</label>
                     <div class="col-sm-4">
                       <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd" name="fecha_nac" autocomplete="off" required>
                     </div>
                   </div>
 
                   <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Fecha destete</label>
+                    <label class="col-sm-2 control-label">Fecha destete</label>
                     <div class="col-sm-4">
                       <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd" name="fecha_dest" autocomplete="off" >
                     </div>
                   </div>
 
                   <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Peso Nacimiento</label>
+                    <label class="col-sm-2 control-label">Peso Nacimiento</label>
                     <div class="col-sm-3">
                       <div class="input-group">
                         <span class="input-group-addon">Kg.</span>
@@ -98,7 +113,7 @@ if ($_GET['form']=='add') { ?>
                   </div>
 
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Peso Destete</label>
+                    <label class="col-sm-2 control-label">Peso Destete</label>
                     <div class="col-sm-3">
                       <div class="input-group">
                         <span class="input-group-addon">Kg.</span>
@@ -108,8 +123,8 @@ if ($_GET['form']=='add') { ?>
                   </div>
 
                   
-                  <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Raza</label>
+                  <div class="form-group row">
+                    <label class="col-sm-2 control-label">Raza</label>
                     <div class="col-sm-4">
                       <?php
 
@@ -141,8 +156,8 @@ if ($_GET['form']=='add') { ?>
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Color</label>
+                  <div class="form-group row">
+                    <label class="col-sm-2 control-label">Color</label>
                     <div class="col-sm-4">
                       <?php
                       require_once "config/conection.php";
@@ -173,15 +188,15 @@ if ($_GET['form']=='add') { ?>
                     </div>
                   </div>
 
-                  <div class="form-horizontal">
-                    <label class="col-sm-2 col-form-label">Marca oreja</label>
+                  <div class="form-group row">
+                    <label class="col-sm-2 control-label">Marca oreja</label>
                     <div class="col-sm-4">
                       <input type="text" class="form-control" name="marca_oreja" autocomplete="off" required>
                     </div>
                   </div>
 
                   <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Marca hierro</label>
+                    <label class="col-sm-2 control-label">Marca hierro</label>
                     <div class="col-sm-4">
                       <input type="text" class="form-control" name="marca_hierro" autocomplete="off" required>
                     </div>
@@ -316,13 +331,13 @@ elseif ($_GET['form']=='edit') {
               </div>
 
               <div class="form-group">
-                <label class="col-sm-1">Fecha nacimiento</label>
-                <div class="col-sm-2">
+                <label class="col-sm-2 control-label">Fecha nacimiento</label>
+                <div class="col-sm-5">
                 <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd" name="fecha_nac" autocomplete="off" required value="<?php echo $data['fecha_nac']; ?>"></div>
               </div>
 
               <div class="form-group">
-                <label class="col-sm-1">Fecha destete</label>
+                <label class="col-sm-2 control-label">Fecha destete</label>
                 <div class="col-sm-2">
                 <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd" name="fecha_dest" autocomplete="off" value="<?php echo $data['fecha_dest']; ?>"></div>
               </div>

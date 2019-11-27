@@ -43,38 +43,41 @@
                 <th width='20' class="center">Codigo</th>
                 <th width='80'class="center">Nombre</th>
                 <th width='80'class="center">Empleado</th>
-                <th width='80'class="center">Fecha</th>
-                <th width='80'class="center">Peso</th>
+                <th width='80'class="center">Fecha pesaje</th>
+                <th width='110'class="center">Peso</th>
+                
                 <th width='80'class="center">Ganancia</th>
-                <th></th>
+                <th width='80'class="center">modificar</th>
+
+                
               </tr>
             </thead>
             <tbody>
             <?php  
-            $query = mysqli_query($mysqli, "SELECT (p.id)as id,(a.nombre)as animal,(e.nombre)as empleado,(p.fecha)as fecha,
-                                            (p.peso)as peso,(p.ganancia)as ganancia
+            $query = mysqli_query($mysqli, "SELECT (p.id)as codigo,(a.nombre)as animal,(e.nombre)as empleado,(p.fecha_peso)as fecha,
+                                            (p.peso)as peso, (p.ganancia)as ganancia
                                             FROM peso_animal p INNER JOIN animal a ON p.id_animal=a.id 
-                                            INNER JOIN empleado e ON p.id=e.id 
-                                            WHERE p.id_animal=a.id AND p.id=e.id
-                                            ORDER BY id DESC")
+                                            INNER JOIN empleado e ON p.id_empleado=e.id 
+                                            WHERE p.id_animal=a.id AND p.id_empleado=e.id
+                                            ORDER BY codigo DESC")
                                             or die('error: '.mysqli_error($mysqli));
 
             while ($data = mysqli_fetch_assoc($query)) { 
            
               echo "<tr>
-                      <td width='20' class='center'>$data[id]</td>
+                      <td width='20' class='center'>$data[codigo]</td>
                       <td width='80' class='center'>$data[animal]</td>
                       <td width='80' class='center'>$data[empleado]</td>
                       <td width='80' class='center'>$data[fecha]</td>
-                      <td width='80' class='center'>$data[peso]</td>
+                      <td width='110' class='center'>$data[peso]</td>
                       <td width='80' class='center'>$data[ganancia]</td>
                       <td width='80' class='center'>
                         <div>
-                          <a data-toggle='tooltip' data-placement='top' title='modificar' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_pesaje_ganado&form=edit&id=$data[id]'>
+                          <a data-toggle='tooltip' data-placement='top' title='modificar' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_pesaje_ganado&form=edit&id=$data[codigo]'>
                           <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
                           </a>";
             ?>
-                          <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/pesaje_ganado/proses.php?act=delete&id=<?php echo $data['id'];?>" onclick="return confirm('estas seguro de eliminar el peso animal <?php echo $data['nombre']; ?> ?');">
+                          <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/pesaje_ganado/proses.php?act=delete&id=<?php echo $data['codigo'];?>" onclick="return confirm('estas seguro de eliminar el peso animal <?php echo $data['nombre']; ?> ?');">
                               <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
                           </a>
 

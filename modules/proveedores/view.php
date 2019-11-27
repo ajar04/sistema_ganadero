@@ -62,21 +62,21 @@
             </thead>
             <tbody>
             <?php  
-            $query = mysqli_query($mysqli, "SELECT * FROM proveedor ORDER BY id DESC")
+            $query = mysqli_query($mysqli, "SELECT * FROM proveedor ORDER BY id_proveedor DESC")
                                             or die('error: '.mysqli_error($mysqli));
 
             while ($data = mysqli_fetch_assoc($query)) { 
-              $id = format_rupiah($data['id']);
+              $id = format_rupiah($data['id_proveedor']);
            
               echo "<tr>
-                      <td width='30' class='center'>$data[id]</td>
-                      <td width='180'>$data[nombre]</td>
+                      <td width='30' class='center'>$data[id_proveedor]</td>
+                      <td width='180'>$data[nombre_proveedor]</td>
                       <td width='180'>$data[direccion]</td>
                       <td width='90'>$data[email]</td>
-                      <td width='90'>$data[telefono]</td>
+                      <td width='90'>$data[telefono_contacto]</td>
                       <td class='center' width='80'>
                         <div>
-                          <a data-toggle='tooltip' data-placement='top' title='modificar' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_proveedores&form=edit&id=$data[id]'>
+                          <a data-toggle='tooltip' data-placement='top' title='modificar' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_proveedores&form=edit&id=$data[id_proveedor]'>
                               <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
                           </a>";
             ?>

@@ -43,42 +43,42 @@
                 <th width='20' class="center">Codigo</th>
                 <th width='80'class="center">Nombre</th>
                 <th width='80'class="center">Empleado</th>
-                <th width='80'class="center">Fecha</th>
-                <th width='80'class="center">Peso mañana</th>
-                <th width='80'class="center">Peso tarde</th>
-                <th width='80'class="center">Peso</th>
+                <th width='80'class="center">Fecha Reciente</th>
+                <th width='80'class="center">Ultimo Ordeño</th>
+                <th width='80'class="center">Total Producido</th>
+                <th width='80'class="center">Promedio</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
             <?php  
-            $query = mysqli_query($mysqli, "SELECT (p.id)as id,(a.nombre)as animal,(e.nombre)as empleado,
-                                            (p.fecha)as fecha,(p.peso_am)as peso_am,(p.peso_pm)as peso_pm,
-                                            (p.peso_perdido)as peso
-                                            FROM peso_leche p INNER JOIN animal a ON p.id_animal=a.id 
+            $query = mysqli_query($mysqli, "SELECT (p.id)as codigo,(a.nombre)as animal,(e.nombre)as empleado,
+                                            max(p.fecha)as fecha,(p.cant_leche)as cant_leche,sum(p.cant_leche)as total,
+                                            avg(p.cant_leche)as prom
+                                            FROM produccion_leche p INNER JOIN animal a ON p.id_animal=a.id 
                                             INNER JOIN empleado e ON p.id_empleado=e.id 
                                             WHERE p.id_animal=a.id AND p.id_empleado=e.id
-                                            ORDER BY id DESC")
+                                            group BY animal desc ")
                                             or die('error: '.mysqli_error($mysqli));
 
             while ($data = mysqli_fetch_assoc($query)) { 
            
               echo "<tr>
-                      <td width='20' class='center'>$data[id]</td>
+                      <td width='20' class='center'>$data[codigo]</td>
                       <td width='80' class='center'>$data[animal]</td>
                       <td width='80' class='center'>$data[empleado]</td>
                       <td width='80' class='center'>$data[fecha]</td>
-                      <td width='80' class='center'>$data[peso_am]</td>
-                      <td width='80' class='center'>$data[peso_pm]</td>
-                      <td width='80' class='center'>$data[peso]</td>
+                      <td width='80' class='center'>$data[cant_leche]</td>
+                      <td width='80' class='center'>$data[total]</td>
+                      <td width='80' class='center'>$data[prom]</td>
                       <td width='80' class='center'>
                         <div>
                         
-                          <a data-toggle='tooltip' data-placement='top' title='modificar' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_pesaje_leche&form=edit&id=$data[id]'>
+                          <a data-toggle='tooltip' data-placement='top' title='modificar' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_pesaje_leche&form=edit&id=$data[codigo]'>
                           <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
                           </a>";
             ?>
-                          <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/pesaje_leche/proses.php?act=delete&id=<?php echo $data['id'];?>" onclick="return confirm('estas seguro de eliminar el peso animal <?php echo $data['nombre']; ?> ?');">
+                          <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/pesaje_leche/proses.php?act=delete&id=<?php echo $data['codigo'];?>" onclick="return confirm('estas seguro de eliminar el peso animal <?php echo $data['nombre']; ?> ?');">
                               <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
                           </a>
 

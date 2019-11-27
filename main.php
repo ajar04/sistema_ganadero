@@ -1,5 +1,6 @@
 <?php  
 session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -84,17 +85,26 @@ session_start();
       <header class="main-header">
         <!-- Logo -->
         <a href="?module=start" class="logo">
-          <img style="margin-top:-12px" src="assets/img/logo1.png" alt="Logo" height="50">
-          <span style="font-size:12px">SOFTWARE GANADERO</span>
+          <img style="margin-top:-50px" src="assets/img/logo1.png" alt="Logo" height="100">
+          <span style="font-size:12px"></span>
         </a>
 
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
+          
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="margin-top: 20px;">
+
+          
+            <span class="sr-only">Toggle navigation
+              
+
+            </span>
+            
           </a>
-          <div class="navbar-custom-menu">
+          <div class="navbar-custom-menu" style="margin-top: 20px;height: auto;">
             <ul class="nav navbar-nav">
+              
+              
 
               <?php include "top-menu.php" ?>
               
@@ -109,7 +119,9 @@ session_start();
 
             <?php include "sidebar-menu.php" ?>
 
+
         </section>
+        
         <!-- /.sidebar -->
       </aside>
 
@@ -140,7 +152,7 @@ session_start();
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
-        <strong>Copyright &copy; <?php echo date('Y');?> - <a href="https://www.google.com" target="_blank">Software Ganadero UFPS</a>.</strong>
+        <strong>Copyright &copy; <?php echo date('Y');?> - <a href="https://www.google.com" target="_blank">Sistema Ganadero - UFPS</a>.</strong>
       </footer>
     </div><!-- ./wrapper -->
 

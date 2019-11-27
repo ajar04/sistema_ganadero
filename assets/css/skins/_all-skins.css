@@ -641,6 +641,7 @@
  */
 .skin-green .main-header .navbar {
   background-color: #00a65a;
+  height: 100px;
 }
 .skin-green .main-header .navbar .nav > li > a {
   color: #ffffff;
@@ -683,6 +684,7 @@
   background-color: #008d4c;
   color: #ffffff;
   border-bottom: 0 solid transparent;
+  padding: 50px;
 }
 .skin-green .main-header .logo:hover {
   background-color: #008749;

@@ -1,5 +1,8 @@
-<?
-include('../../config/database.php');//CONEXION A LA BD
+<?php
+
+require_once "../../config/database.php";//CONEXION A LA BD
+
+
 
 $fecha1=$_POST['fecha1'];
 $fecha2=$_POST['fecha2'];
@@ -7,7 +10,7 @@ $fecha2=$_POST['fecha2'];
 if(isset($_POST['generar_reporte_leche']))
 {
 	// NOMBRE DEL ARCHIVO Y CHARSET
-	header('Content-Type:text/csv; charset=latin1');
+	header('Content-Type:text/csv; charset=utf8');
 	header('Content-Disposition: attachment; filename="Reporte_Fechas_Pesaje_leche.csv"');
 
 	// SALIDA DEL ARCHIVO

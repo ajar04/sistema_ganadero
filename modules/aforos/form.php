@@ -6,7 +6,7 @@ if ($_GET['form']=='add') { ?>
     <h1>
       <i class="fa fa-edit icon-title"></i> Registrar Aforos
     </h1>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" style="margin-top: 50px;">
       <li><a href="?module=start"><i class="fa fa-home"></i> Inicio </a></li>
       <li><a href="?module=aforos"> Aforos </a></li>
       <li class="active"> Más </li>
@@ -24,7 +24,7 @@ if ($_GET['form']=='add') { ?>
                 <div class="box-body">
 
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Potrero</label>
+                    <label class="col-sm-2 control-label">Potrero</label>
                     <div class="col-sm-4">
                       <?php
                       require_once "config/conection.php";
@@ -57,7 +57,7 @@ if ($_GET['form']=='add') { ?>
                   </div>
 
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Vegetacion</label>
+                    <label class="col-sm-2 control-label">Vegetacion</label>
                     <div class="col-sm-4">
                       <?php
                       require_once "config/conection.php";
@@ -90,7 +90,7 @@ if ($_GET['form']=='add') { ?>
                   </div>
 
                   <div class="form-group">
-                    <label class="col-sm-2 col-form-label">Empleado</label>
+                    <label class="col-sm-2 control-label">Empleado</label>
                     <div class="col-sm-4">
                       <?php
                       require_once "config/conection.php";
@@ -123,17 +123,17 @@ if ($_GET['form']=='add') { ?>
                   </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Peso</label>
+                <label class="col-sm-2 control-label">Peso X metro cuadrado</label>
                 <div class="col-sm-5">
                   <div class="input-group">
-                    <span class="input-group-addon">$.</span>
+                    <span class="input-group-addon">Kg.</span>
                     <input type="text" class="form-control" id="peso" name="peso" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" required>
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 col-form-label " >Fecha</label>
+                <label class="col-sm-2 control-label " >Fecha</label>
                 <div class="col-sm-2">
                   <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd" name="fecha" autocomplete="off" required>
                 </div>
@@ -299,7 +299,7 @@ elseif ($_GET['form']=='edit') {
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 col-form-label " >Fecha</label>
+                <label class="col-sm-2 control-label " >Fecha</label>
                 <div class="col-sm-2">
                   <input type="text" class="form-control date-picker" data-date-format="yyyy-mm-dd" name="fecha" autocomplete="off" value="<?php echo $data['fecha']; ?>" required>
                 </div>

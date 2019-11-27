@@ -53,28 +53,32 @@
             <thead>
               <tr>
                 <th class="center">Codigo</th>
-                <th class="center">lote</th>
-                <th></th>
+                <th class="center">Nombre Lote</th>
+                <th class="center">Nombre animal</th>
+                <th class="center">Fecha Creacion</th>
+                
               </tr>
             </thead>
             <tbody>
             <?php  
-            $query = mysqli_query($mysqli, "SELECT id,lote FROM lote ORDER BY id DESC")
+            $query = mysqli_query($mysqli, "SELECT lote.id as id_lote,nombre_lote, animal.nombre as na, fecha_creacion FROM lote, animal where lote.id_animal_lote = animal.id ORDER BY id_lote DESC")
                                             or die('error: '.mysqli_error($mysqli));
 
             while ($data = mysqli_fetch_assoc($query)) { 
-              $id = format_rupiah($data['id']);
+              $id = format_rupiah($data['id_lote']);
            
               echo "<tr>
-                      <td width='80' class='center'>$data[id]</td>
-                      <td width='180'>$data[lote]</td>
+                      <td width='80' class='center'>$data[id_lote]</td>
+                      <td width='180'>$data[nombre_lote]</td>
+                      <td width='180'>$data[na]</td>
+                      <td width='180'>$data[fecha_creacion]</td>
                       <td class='center' width='80'>
                         <div>
-                          <a data-toggle='tooltip' data-placement='top' title='modificar' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_lotes&form=edit&id=$data[id]'>
+                          <a data-toggle='tooltip' data-placement='top' title='modificar' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_lotes&form=edit&id=$data[id_lote]'>
                               <i style='color:#fff' class='glyphicon glyphicon-edit'></i>
                           </a>";
             ?>
-                          <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/lotes/proses.php?act=delete&id=<?php echo $data['id'];?>" onclick="return confirm('estas seguro de eliminar el lote <?php echo $data['lote']; ?> ?');">
+                          <a data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" href="modules/lotes/proses.php?act=delete&id=<?php echo $data['id_lote'];?>" onclick="return confirm('estas seguro de eliminar el lote <?php echo $data['nombre_lote']; ?> ?');">
                               <i style="color:#fff" class="glyphicon glyphicon-trash"></i>
                           </a>
             <?php

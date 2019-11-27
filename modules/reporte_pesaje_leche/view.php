@@ -1,9 +1,9 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <i class="fa fa-file-text-o icon-title"></i>Reporte de datos de Pesaje Leche
+    <i class="fa fa-file-text-o icon-title"></i>Produccion de Leche
   </h1>
-  <ol class="breadcrumb">
+  <ol class="breadcrumb" style="margin-top: 50px;">
     <li><a href="?module=start"><i class="fa fa-home"></i> Inicio</a></li>
     <li class="active">informe</li>
   </ol>
@@ -17,7 +17,7 @@
       
       <div class="box box-primary">
         <div class="box-body">
-          <table id="dataTables1" class="table table-bordered table-striped table-hover">
+          <table id="dataTables" class="table table-bordered table-striped table-hover">
             <thead>
               <tr>
                 <th width='20' class="center">Codigo</th>
