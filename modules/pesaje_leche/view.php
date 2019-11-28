@@ -40,11 +40,11 @@
           <table id="dataTables1" class="table table-bordered table-striped table-hover">
             <thead>
               <tr>
-                <th width='20' class="center">Codigo</th>
+               <th width='20' class="center">Codigo</th>
                 <th width='80'class="center">Nombre</th>
-                <th width='80'class="center">Empleado</th>
-                <th width='80'class="center">Fecha Reciente</th>
-                <th width='80'class="center">Ultimo Ordeño</th>
+                <!--<th width='80'class="center">Empleado</th>-->
+               <!-- <th width='80'class="center">Fecha Reciente</th>-->
+                <!--<th width='80'class="center">Ultimo Ordeño</th>-->
                 <th width='80'class="center">Total Producido</th>
                 <th width='80'class="center">Promedio</th>
                 <th></th>
@@ -52,25 +52,24 @@
             </thead>
             <tbody>
             <?php  
-            $query = mysqli_query($mysqli, "SELECT (p.id)as codigo,(a.nombre)as animal,(e.nombre)as empleado,
-                                            max(p.fecha)as fecha,(p.cant_leche)as cant_leche,sum(p.cant_leche)as total,
-                                            avg(p.cant_leche)as prom
-                                            FROM produccion_leche p INNER JOIN animal a ON p.id_animal=a.id 
-                                            INNER JOIN empleado e ON p.id_empleado=e.id 
-                                            WHERE p.id_animal=a.id AND p.id_empleado=e.id
-                                            group BY animal desc ")
+            $query = mysqli_query($mysqli, "SELECT (a.id)as codigo, (a.nombre)as animal,
+                                                    sum(p.cant_leche)as total,
+                                                    avg(p.cant_leche)as prom
+            
+                                                    FROM produccion_leche p 
+                                                    INNER JOIN animal a ON p.id_animal=a.id 
+                                                                                                       
+                                                    GROUP BY codigo, animal")
+
                                             or die('error: '.mysqli_error($mysqli));
 
             while ($data = mysqli_fetch_assoc($query)) { 
            
               echo "<tr>
-                      <td width='20' class='center'>$data[codigo]</td>
-                      <td width='80' class='center'>$data[animal]</td>
-                      <td width='80' class='center'>$data[empleado]</td>
-                      <td width='80' class='center'>$data[fecha]</td>
-                      <td width='80' class='center'>$data[cant_leche]</td>
-                      <td width='80' class='center'>$data[total]</td>
-                      <td width='80' class='center'>$data[prom]</td>
+                        <td width='80' class='center'>$data[codigo]</td>
+                        <td width='80' class='center'>$data[animal]</td>
+                        <td width='80' class='center'>$data[total]</td>
+                        <td width='80' class='center'>$data[prom]</td>
                       <td width='80' class='center'>
                         <div>
                         
